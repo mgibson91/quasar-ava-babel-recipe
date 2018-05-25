@@ -1,9 +1,6 @@
 {
   "presets": [
     [
-      "@ava/stage-4"
-    ],
-    [
       "@babel/preset-env", {
         "modules": false,
         "loose": false,
@@ -17,15 +14,25 @@
         "useBuiltIns": true,
         "decoratorsLegacy": true
       }
-    ]
+    ],
+    "babel-preset-vue"
   ],
   "plugins": [
-    [
-      "@babel/transform-runtime", {
-        "polyfill": false,
-        "regenerator": false
-      }
-    ]
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-pipeline-operator",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-modules-commonjs"
   ],
-  "comments": false
+  "comments": false,
+  "env": {
+    "AVA": {
+      "plugins": [
+        [
+          "babel-plugin-webpack-alias",
+          { "config": "${CONFIG}" }
+        ]
+      ]
+    }
+  }
 }

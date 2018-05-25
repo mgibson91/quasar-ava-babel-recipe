@@ -1,4 +1,5 @@
 // Configuration for your app
+const path = require('path');
 
 module.exports = function (ctx) {
   return {
@@ -29,7 +30,11 @@ module.exports = function (ctx) {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules|quasar)/
-        })
+        });
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias,
+          '@src': path.resolve(__dirname, './src'),
+        };
       }
     },
     devServer: {
